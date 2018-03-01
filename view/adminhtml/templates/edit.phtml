@@ -1,0 +1,24 @@
+<script type="text/x-magento-init">
+    {
+        "#custom-form": {
+            "validation": {}
+        }
+    }
+</script>
+
+<?php
+$ticket_id   = $block->getTicketID();
+$ticket_data = $block->getTicketData($ticket_id);
+?>
+
+<form action="<?php echo $this->getUrl('support_tickets/ticket/edit/ticket_id/' . $ticket_id) ?>" method="post" id="custom-form">
+    <div class="field required">
+        <label for="ticket_title"><?php echo __('Title'); ?></label>
+        <input name="title" type="text" id="ticket_title" class="input-text" style="width: 350px" value="<?=$ticket_data['title'];?>" data-validate="{required:true}" /><br />
+    </div>
+    <label for="ticket_description"><?php echo __('Description'); ?></label>
+    <input name="description" type="text" id="ticket_description" class="input-text" style="width: 350px" value="<?=$ticket_data['description'];?>" data-validate="{required:true}" /><br />
+    <input type="hidden" name="ticket_id" value="<?=$ticket_id;?>" />
+    <input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>" />    
+    <input type="submit" value="Alterar" class="action-submit">
+</form>
